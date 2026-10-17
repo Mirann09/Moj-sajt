@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>Mirko Šakić · Web developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="I design and build websites for small businesses, from first call to launch. Based in Serbia, working remotely with clients in the EU and US.">
+  <meta property="og:title" content="Mirko Šakić · Web developer">
+  <meta property="og:description" content="I design and build websites for small businesses, from first call to launch. Based in Serbia, working remotely with clients in the EU and US.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap&subset=latin-ext">
+  <style>
+    :root {
+      --color-bg: #0E0E0E;
+      --color-surface: #141414;
+      --color-surface-2: #1F1F1F;
+      --color-line: #262626;
+      --color-line-strong: #3A3A3A;
+      --color-text: #EDEBE6;
+      --color-text-muted: #9C9A95;
+      --color-accent: #C8F25A;
+      --color-on-accent: #0E0E0E;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'Geist', system-ui, -apple-system, sans-serif;
+      --space-section: clamp(64px, 10vw, 112px);
+      --space-gutter: clamp(20px, 5vw, 40px);
+      --content-max: 1100px;
+      --radius-button: 8px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: var(--color-text); text-decoration: none; }
+    a:hover { color: var(--color-accent); }
+    input, textarea, button { font: inherit; }
+    ::placeholder { color: #8E8C87; opacity: 1; }
+    ::selection { background: var(--color-accent); color: var(--color-on-accent); }
+    :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+    html:not([data-lang="sr"]) [data-l="sr"] { display: none !important; }
+    html[data-lang="sr"] [data-l="en"] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+  </style>
+</helmet>
+
+<div id="top" ref="{{ rootRef }}" class="page" style="position:relative; overflow-x:clip; min-height:100vh; background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); font-size:17px; line-height:1.6;">
+
+  <!-- POZADINA: mreža + svetlo koje prati miša. Pale se i gase u podešavanjima (Tweaks). -->
+  <sc-if value="{{ bgGrid }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" class="bg_grid" style="position:absolute; inset:0; z-index:0; pointer-events:none; background-image:linear-gradient(to right, rgba(237,235,230,0.022) 1px, transparent 1px), linear-gradient(to bottom, rgba(237,235,230,0.022) 1px, transparent 1px); background-size:64px 64px; -webkit-mask-image:linear-gradient(to bottom, #000 0px, #000 1800px, transparent 2800px); mask-image:linear-gradient(to bottom, #000 0px, #000 1800px, transparent 2800px);"></div>
+    <div aria-hidden="true" ref="{{ spotRef }}" class="bg_spotlight" style="position:absolute; left:0; top:0; z-index:0; width:640px; height:640px; pointer-events:none; will-change:transform; transform:translate3d(calc(50vw - 320px), 120px, 0); background-image:linear-gradient(to right, color-mix(in oklab, var(--color-accent) 7%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, var(--color-accent) 7%, transparent) 1px, transparent 1px), radial-gradient(closest-side, color-mix(in oklab, var(--color-accent) 4%, transparent), transparent); background-size:64px 64px, 64px 64px, 100% 100%; -webkit-mask-image:radial-gradient(closest-side, #000 0%, rgba(0,0,0,0.4) 55%, transparent 100%); mask-image:radial-gradient(closest-side, #000 0%, rgba(0,0,0,0.4) 55%, transparent 100%);"></div>
+  </sc-if>
+
+  <!-- NAVIGACIJA -->
+  <header class="nav" style="position:sticky; top:0; z-index:50; background:var(--color-bg); border-bottom:1px solid var(--color-line);">
+    <div class="nav_inner" style="max-width:calc(var(--content-max) + 2 * var(--space-gutter)); margin:0 auto; padding:0 var(--space-gutter); height:68px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+      <a href="#top" class="nav_logo" style="font-family:var(--font-display); font-size:26px; line-height:1; letter-spacing:-0.01em; color:var(--color-text); white-space:nowrap;">Mirko Šakić</a>
+
+      <sc-if value="{{ notMobile }}" hint-placeholder-val="{{ true }}">
+        <nav aria-label="Main" class="nav_menu" style="display:flex; align-items:center; gap:28px;">
+          <div class="nav_links" style="display:flex; gap:28px; font-size:15px;">
+            <a href="#work" class="nav_link" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-text);"><span data-l="en">Work</span><span data-l="sr">Radovi</span></a>
+            <a href="#services" class="nav_link" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-text);"><span data-l="en">Services</span><span data-l="sr">Usluge</span></a>
+            <a href="#about" class="nav_link" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-text);"><span data-l="en">About</span><span data-l="sr">O meni</span></a>
+            <a href="#contact" class="nav_link" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-text);"><span data-l="en">Contact</span><span data-l="sr">Kontakt</span></a>
+          </div>
+          <div role="group" aria-label="{{ langLabel }}" class="nav_lang" style="display:flex; gap:2px; padding:3px; border:1px solid var(--color-line-strong); border-radius:8px;">
+            <button type="button" onClick="{{ setEn }}" aria-pressed="{{ enPressed }}" class="nav_lang-button" style="min-width:38px; height:30px; padding:0 8px; border:0; border-radius:6px; background:{{ enBg }}; color:{{ enColor }}; font-size:13px; font-weight:500; letter-spacing:0.06em; cursor:pointer;">EN</button>
+            <button type="button" onClick="{{ setSr }}" aria-pressed="{{ srPressed }}" class="nav_lang-button" style="min-width:38px; height:30px; padding:0 8px; border:0; border-radius:6px; background:{{ srBg }}; color:{{ srColor }}; font-size:13px; font-weight:500; letter-spacing:0.06em; cursor:pointer;">SR</button>
+          </div>
+          <a href="#contact" class="button is-small" style="display:inline-flex; align-items:center; height:40px; padding:0 16px; border-radius:var(--radius-button); background:var(--color-accent); color:var(--color-on-accent); font-size:14px; font-weight:500; white-space:nowrap; transition:all 300ms ease;" style-hover="background:var(--color-text); color:var(--color-on-accent); transform:translateY(-2px); box-shadow:0 10px 28px -10px color-mix(in oklab, var(--color-accent) 70%, transparent);"><span data-l="en">Get in touch</span><span data-l="sr">Pošalji upit</span></a>
+        </nav>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="mobile-menu" aria-label="{{ menuLabel }}" class="nav_hamburger" style="width:44px; height:44px; margin-right:-10px; display:flex; align-items:center; justify-content:center; background:transparent; border:0; color:var(--color-text); cursor:pointer;">
+          <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.5; stroke-linecap:round;"><path d="M3 7h16M3 15h16"></path></svg>
+          </sc-if>
+          <sc-if value="{{ menuIsOpen }}" hint-placeholder-val="{{ false }}">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.5; stroke-linecap:round;"><path d="M5 5l12 12M17 5L5 17"></path></svg>
+          </sc-if>
+        </button>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ menuVisible }}" hint-placeholder-val="{{ false }}">
+      <div id="mobile-menu" class="nav_menu-mobile" style="position:absolute; left:0; right:0; top:100%; background:var(--color-bg); border-bottom:1px solid var(--color-line); padding:4px var(--space-gutter) 28px; display:flex; flex-direction:column;">
+        <a href="#work" onClick="{{ closeMenu }}" style="padding:14px 0; border-bottom:1px solid var(--color-line); font-family:var(--font-display); font-size:30px; line-height:1.1; color:var(--color-text);"><span data-l="en">Work</span><span data-l="sr">Radovi</span></a>
+        <a href="#services" onClick="{{ closeMenu }}" style="padding:14px 0; border-bottom:1px solid var(--color-line); font-family:var(--font-display); font-size:30px; line-height:1.1; color:var(--color-text);"><span data-l="en">Services</span><span data-l="sr">Usluge</span></a>
+        <a href="#about" onClick="{{ closeMenu }}" style="padding:14px 0; border-bottom:1px solid var(--color-line); font-family:var(--font-display); font-size:30px; line-height:1.1; color:var(--color-text);"><span data-l="en">About</span><span data-l="sr">O meni</span></a>
+        <a href="#contact" onClick="{{ closeMenu }}" style="padding:14px 0; border-bottom:1px solid var(--color-line); font-family:var(--font-display); font-size:30px; line-height:1.1; color:var(--color-text);"><span data-l="en">Contact</span><span data-l="sr">Kontakt</span></a>
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:20px;">
+          <div role="group" aria-label="{{ langLabel }}" class="nav_lang" style="display:flex; gap:2px; padding:3px; border:1px solid var(--color-line-strong); border-radius:8px;">
+            <button type="button" onClick="{{ setEn }}" aria-pressed="{{ enPressed }}" style="min-width:48px; height:42px; padding:0 10px; border:0; border-radius:6px; background:{{ enBg }}; color:{{ enColor }}; font-size:14px; font-weight:500; letter-spacing:0.06em; cursor:pointer;">EN</button>
+            <button type="button" onClick="{{ setSr }}" aria-pressed="{{ srPressed }}" style="min-width:48px; height:42px; padding:0 10px; border:0; border-radius:6px; background:{{ srBg }}; color:{{ srColor }}; font-size:14px; font-weight:500; letter-spacing:0.06em; cursor:pointer;">SR</button>
+          </div>
+          <a href="#contact" onClick="{{ closeMenu }}" style="display:inline-flex; align-items:center; height:48px; padding:0 20px; border-radius:var(--radius-button); background:var(--color-accent); color:var(--color-on-accent); font-size:15px; font-weight:500;"><span data-l="en">Get in touch</span><span data-l="sr">Pošalji upit</span></a>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <main style="position:relative; z-index:1;">
+
+    <!-- HERO -->
+    <section class="section_hero" style="padding:clamp(56px, 9vw, 112px) var(--space-gutter) var(--space-section); text-align:center;">
+      <div style="max-width:var(--content-max); margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:40px;">
+        <h1 class="hero_title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(46px, 8.2vw, 108px); line-height:1.02; letter-spacing:-0.025em; text-wrap:balance;">
+          <span data-l="en" style="display:block;">
+            <span style="display:block;"><span data-hw="" style="display:inline-block;">I</span> <span data-hw="" style="display:inline-block;">build</span> <span data-hw="" style="display:inline-block;">websites</span> <span data-hw="" style="display:inline-block;">that</span> <span data-hw="" style="display:inline-block;">get</span></span>
+            <span style="display:block; height:1.06em; white-space:nowrap;"><span data-hw="" ref="{{ rotRefEn }}" class="hero_rotating-word" style="display:inline-block; font-style:italic; color:var(--color-accent);">{{ rotEn }}</span></span>
+            <span style="display:block;"><span data-hw="" style="display:inline-block;">more</span> <span data-hw="" style="display:inline-block; font-style:italic;">bookings.</span></span>
+          </span>
+          <span data-l="sr" style="display:block;">
+            <span style="display:block;"><span data-hw="" style="display:inline-block;">Pravim</span> <span data-hw="" style="display:inline-block;">sajtove</span> <span data-hw="" style="display:inline-block;">koji</span></span>
+            <span style="display:block; height:1.06em; white-space:nowrap;"><span data-hw="" ref="{{ rotRefSr }}" class="hero_rotating-word" style="display:inline-block; font-style:italic; color:var(--color-accent);">{{ rotSr }}</span></span>
+            <span style="display:block;"><span data-hw="" style="display:inline-block;">donose</span> <span data-hw="" style="display:inline-block;">nove</span> <span data-hw="" style="display:inline-block; font-style:italic;">klijente.</span></span>
+          </span>
+        </h1>
+
+        <div class="hero_avatar-wrap" style="position:relative; display:flex; justify-content:center; isolation:isolate;">
+          <sc-if value="{{ bgGlow }}" hint-placeholder-val="{{ true }}">
+            <div aria-hidden="true" data-glow="" class="hero_avatar-glow" style="position:absolute; left:50%; top:46%; width:150%; aspect-ratio:1 / 1; transform:translate(-50%, -50%); z-index:-1; border-radius:50%; pointer-events:none; background:radial-gradient(closest-side, color-mix(in oklab, var(--color-accent) 12%, transparent), color-mix(in oklab, var(--color-accent) 3%, transparent) 55%, transparent);"></div>
+          </sc-if>
+          <div data-hero-avatar="" class="hero_avatar" role="img" aria-label="{{ avatarAlt }}" style="width:clamp(240px, 30vw, 340px); aspect-ratio:1225 / 1284; margin:-8px 0 -16px; background:url('images/avatar-lime.png') center / contain no-repeat; -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent 100%); mask-image:linear-gradient(to bottom, #000 78%, transparent 100%);"></div>
+        </div>
+
+        <p data-hero-fade="" class="hero_meta" style="margin:-12px 0 0; font-size:15px; color:var(--color-text-muted); display:flex; flex-wrap:wrap; justify-content:center; gap:4px 10px;">
+          <span style="color:var(--color-text);">Mirko Šakić</span><span aria-hidden="true">·</span><span>Web developer</span><span aria-hidden="true">·</span><span data-l="en">2+ years</span><span data-l="sr">2+ godine</span><span aria-hidden="true">·</span><span data-l="en">Serbia</span><span data-l="sr">Srbija</span>
+        </p>
+
+        <div data-hero-fade="" class="hero_buttons" style="display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+          <a href="#contact" class="button" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:var(--radius-button); background:var(--color-accent); color:var(--color-on-accent); font-size:16px; font-weight:500; transition:all 300ms ease;" style-hover="background:var(--color-text); color:var(--color-on-accent); transform:translateY(-2px); box-shadow:0 10px 28px -10px color-mix(in oklab, var(--color-accent) 70%, transparent);">
+            <span data-l="en">Start a project</span><span data-l="sr">Zatraži besplatnu analizu sajta</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.6;"><path d="M2 7h10M8 3l4 4-4 4"></path></svg>
+          </a>
+          <a href="#work" class="button is-secondary" style="display:inline-flex; align-items:center; min-height:52px; padding:0 24px; border-radius:var(--radius-button); border:1px solid var(--color-line-strong); color:var(--color-text); font-size:16px; font-weight:500; transition:all 300ms ease;" style-hover="border-color:var(--color-accent); color:var(--color-text);"><span data-l="en">See my work</span><span data-l="sr">Pogledaj radove</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 PROBLEM -->
+    <section id="problem" class="section_problem" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 40px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">01</span><span aria-hidden="true">·</span><span data-l="en">Sound familiar</span><span data-l="sr">Zvuči poznato</span></p>
+        <ul class="problem_list" style="list-style:none; margin:0; padding:0;">
+          <li data-reveal="" style="padding:24px 0; border-top:1px solid var(--color-line); font-family:var(--font-display); font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; letter-spacing:-0.01em; text-wrap:pretty;"><span data-l="en">Your site looks fine on a laptop and falls apart on a phone.</span><span data-l="sr">Sajt na telefonu izgleda kao umanjena verzija sa računara.</span></li>
+          <li data-reveal="" style="padding:24px 0; border-top:1px solid var(--color-line); font-family:var(--font-display); font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; letter-spacing:-0.01em; text-wrap:pretty;"><span data-l="en">People DM you for prices and opening hours that should already be on the site.</span><span data-l="sr">Klijenti te u porukama pitaju za cene i radno vreme, iako bi to trebalo da piše na sajtu.</span></li>
+          <li data-reveal="" style="padding:24px 0; border-top:1px solid var(--color-line); border-bottom:1px solid var(--color-line); font-family:var(--font-display); font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; letter-spacing:-0.01em; text-wrap:pretty;"><span data-l="en">Anyone who wants to book has to call, or wait for you to reply on Instagram.</span><span data-l="sr">Ko hoće da zakaže, mora da te zove ili da čeka odgovor na Instagramu.</span></li>
+        </ul>
+        <p data-reveal="" class="problem_answer" style="margin:40px 0 0; font-family:var(--font-display); font-style:italic; font-size:clamp(26px, 3.4vw, 40px); line-height:1.15; color:var(--color-accent); text-wrap:pretty;"><span data-l="en">A good site answers those questions before anyone has to ask.</span><span data-l="sr">Dobar sajt odgovori na ta pitanja pre nego što ih neko postavi.</span></p>
+      </div>
+    </section>
+
+    <!-- 02 RADOVI: kartice u nizu (CSS 3D), klik vodi na stranicu projekta. Podaci o projektima su u projects.js, tamo je i šablon za novi projekat. Svaki projekat ima svoju stranicu: project.html?p=slug. -->
+    <section id="work" class="section_work" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 24px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">02</span><span aria-hidden="true">·</span><span data-l="en">Work</span><span data-l="sr">Radovi</span></p>
+        <h2 class="section_title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em; max-width:18ch; text-wrap:balance;"><span data-l="en">Sites I've built, and what each one <em>fixed</em>.</span><span data-l="sr">Sajtovi koje sam napravio i šta je svaki <em>rešio</em>.</span></h2>
+
+        
+          <!-- KUTIJA SA RADOVIMA (CSS 3D). Kartice se generišu iz projects.js. Hover podigne karticu, klik vodi na stranicu projekta. -->
+          <div data-reveal="" ref="{{ boxRef }}" class="work_box" style="position:relative; margin-top:16px; height:{{ box.sceneH }}px; perspective:2600px; perspective-origin:50% 35%;">
+            <div class="work_box-world" style="position:absolute; left:50%; top:60%; width:0; height:0; transform-style:preserve-3d; transform:scale({{ box.scale }}) rotateX(58deg) rotateZ(52deg);">
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.glowLeft }}px; top:{{ box.glowTop }}px; width:{{ box.glowW }}px; height:{{ box.glowH }}px; transform:translateZ(-2px); background:radial-gradient(closest-side, color-mix(in oklab, var(--color-accent) 11%, transparent), transparent);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfD }}px; width:{{ box.L }}px; height:{{ box.D }}px; background:#070807; box-shadow:inset 0 0 0 1px color-mix(in oklab, var(--color-accent) 22%, transparent);"></div>
+              <sc-for list="{{ box.slots }}" as="sl" hint-placeholder-count="6">
+                <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ sl.x }}px; top:{{ box.slotTop }}px; width:4px; height:{{ box.slotH }}px; transform:translateZ(1px); border-radius:2px; background:color-mix(in oklab, var(--color-accent) 22%, #050505); box-shadow:0 0 10px color-mix(in oklab, var(--color-accent) 18%, transparent);"></div>
+              </sc-for>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfH }}px; width:{{ box.L }}px; height:{{ box.H }}px; transform:translateY({{ box.negHalfD }}px) translateZ({{ box.halfH }}px) rotateX(-90deg); background:linear-gradient(#0d0e0c, #080808); border-top:1.5px solid color-mix(in oklab, var(--color-accent) 45%, transparent);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfD }}px; top:{{ box.negHalfH }}px; width:{{ box.D }}px; height:{{ box.H }}px; transform:translateX({{ box.negHalfL }}px) translateZ({{ box.halfH }}px) rotateZ(90deg) rotateX(-90deg); background:linear-gradient(#0f100e, #090909); border-top:1.5px solid color-mix(in oklab, var(--color-accent) 45%, transparent);"></div>
+              <!-- debljina zidova: unutrašnji zidovi + gornje ivice -->
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfH }}px; width:{{ box.L }}px; height:{{ box.H }}px; transform:translateY({{ box.innerFrontY }}px) translateZ({{ box.halfH }}px) rotateX(-90deg); background:linear-gradient(#0a0b09, #060606);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfH }}px; width:{{ box.L }}px; height:{{ box.H }}px; transform:translateY({{ box.innerBackY }}px) translateZ({{ box.halfH }}px) rotateX(-90deg); background:linear-gradient(#0a0b09, #060606);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfD }}px; top:{{ box.negHalfH }}px; width:{{ box.D }}px; height:{{ box.H }}px; transform:translateX({{ box.innerNearX }}px) translateZ({{ box.halfH }}px) rotateZ(-90deg) rotateX(-90deg); background:linear-gradient(#0a0b09, #060606);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfD }}px; top:{{ box.negHalfH }}px; width:{{ box.D }}px; height:{{ box.H }}px; transform:translateX({{ box.innerFarX }}px) translateZ({{ box.halfH }}px) rotateZ(90deg) rotateX(-90deg); background:linear-gradient(#0a0b09, #060606);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.rimFrontTop }}px; width:{{ box.L }}px; height:{{ box.WT }}px; transform:translateZ({{ box.H }}px); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfD }}px; width:{{ box.L }}px; height:{{ box.WT }}px; transform:translateZ({{ box.H }}px); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfD }}px; width:{{ box.WT }}px; height:{{ box.D }}px; transform:translateZ({{ box.H }}px); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.rimNearLeft }}px; top:{{ box.negHalfD }}px; width:{{ box.WT }}px; height:{{ box.D }}px; transform:translateZ({{ box.H }}px); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+              <!-- POKLOPAC: klik otvara/zatvara -->
+              <div onClick="{{ toggleBox }}" class="work_box-lid" style="position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfD }}px; width:{{ box.L }}px; height:{{ box.D }}px; transform-style:preserve-3d; transform-origin:50% 0; transform:translateZ({{ box.lidZ }}px) rotateX({{ box.lidAngle }}deg); pointer-events:{{ box.lidPe }}; transition:transform 1.1s cubic-bezier(.65,0,.25,1) {{ box.lidDelay }}s; cursor:pointer;">
+                <div style="position:absolute; inset:0; border-radius:4px; background:linear-gradient(180deg, #161715, #0b0b0b 75%); box-shadow:inset 0 0 0 1.5px color-mix(in oklab, var(--color-accent) 30%, transparent);"></div>
+                <div style="position:absolute; inset:0; border-radius:4px; transform:translateZ({{ box.LT }}px); background:linear-gradient(135deg, #121311, #090909); box-shadow:inset 0 0 0 1.5px color-mix(in oklab, var(--color-accent) 40%, transparent);"></div>
+                <div style="position:absolute; left:0; top:{{ box.lidRimFrontTop }}px; width:{{ box.L }}px; height:{{ box.LT }}px; transform:translateZ({{ box.halfLT }}px) rotateX(-90deg); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+                <div style="position:absolute; left:0; top:{{ box.negHalfLT }}px; width:{{ box.L }}px; height:{{ box.LT }}px; transform:translateZ({{ box.halfLT }}px) rotateX(-90deg); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+                <div style="position:absolute; left:{{ box.negHalfLT }}px; top:0; width:{{ box.LT }}px; height:{{ box.D }}px; transform:translateZ({{ box.halfLT }}px) rotateY(90deg); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+                <div style="position:absolute; left:{{ box.lidRimNearLeft }}px; top:0; width:{{ box.LT }}px; height:{{ box.D }}px; transform:translateZ({{ box.halfLT }}px) rotateY(90deg); background:color-mix(in oklab, var(--color-accent) 38%, #0c0c0c);"></div>
+              </div>
+              <sc-for list="{{ boxCards }}" as="c" hint-placeholder-count="3">
+                <a href="{{ c.href }}" onMouseEnter="{{ c.enter }}" onMouseLeave="{{ c.leave }}" onFocus="{{ c.enter }}" onBlur="{{ c.leave }}" aria-label="{{ c.aria }}" class="work_box-card" style="position:absolute; left:{{ box.negHalfCW }}px; top:{{ box.negHalfCH }}px; width:{{ box.CW }}px; height:{{ box.CH }}px; display:block; color:{{ c.color }}; transform-style:preserve-3d; transform:translateX({{ c.x }}px) translateZ({{ c.z }}px) rotateZ(-90deg) rotateX(-90deg); opacity:{{ c.opacity }}; visibility:{{ c.visibility }}; pointer-events:{{ c.pe }}; transition:transform {{ c.dur }}s cubic-bezier(.22,1,.36,1) {{ c.delay }}s, opacity .35s ease {{ c.fadeDelay }}s, visibility 0s linear {{ c.visDelay }}s, color 300ms ease; cursor:pointer;">
+                  <span aria-hidden="true" style="position:absolute; inset:-1.5px; border-radius:12px; transform:translateZ({{ box.negT }}px); background:{{ c.edge }};"></span>
+                  <span aria-hidden="true" style="position:absolute; left:10px; right:10px; top:-1.5px; height:{{ box.T }}px; transform-origin:50% 0; transform:rotateX(-90deg); background:{{ c.edgeLight }};"></span>
+                  <span aria-hidden="true" style="position:absolute; top:10px; bottom:10px; right:-1.5px; width:{{ box.T }}px; transform-origin:100% 50%; transform:rotateY(-90deg); background:{{ c.edge }};"></span>
+                  <span aria-hidden="true" style="position:absolute; top:10px; bottom:10px; left:-1.5px; width:{{ box.T }}px; transform-origin:0 50%; transform:rotateY(90deg); background:{{ c.edge }};"></span>
+                  <span class="work_box-card-face" style="position:absolute; inset:0; padding:16px; display:flex; flex-direction:column; gap:12px; border-radius:12px; border:1.5px solid {{ c.border }}; background:{{ c.bg }}; box-shadow:{{ c.shadow }}; transform:translateZ(0.5px); transition:all 550ms cubic-bezier(.22,1,.36,1);">
+                  <span style="display:flex; align-items:baseline; gap:10px;"><span style="font-size:11px; font-weight:500; letter-spacing:0.14em; opacity:0.75;">{{ c.num }}</span><span style="font-family:var(--font-display); font-size:23px; line-height:1.05; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0;">{{ c.name }}</span><span aria-hidden="true" style="margin-left:auto; font-size:14px;">↗</span></span>
+                  <span style="position:relative; display:block; width:100%; aspect-ratio:16 / 10; border-radius:6px; overflow:hidden; border:1px solid rgba(0,0,0,0.35); background:#111 {{ c.bgImage }} top center / cover no-repeat;"></span>
+                  </span>
+                </a>
+              </sc-for>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfD }}px; top:{{ box.negHalfH }}px; width:{{ box.D }}px; height:{{ box.H }}px; transform:translateX({{ box.halfL }}px) translateZ({{ box.halfH }}px) rotateZ(-90deg) rotateX(-90deg); background:linear-gradient(#121311, #0a0a0a); border-top:1.5px solid color-mix(in oklab, var(--color-accent) 45%, transparent);"></div>
+              <div aria-hidden="true" style="pointer-events:none; position:absolute; left:{{ box.negHalfL }}px; top:{{ box.negHalfH }}px; width:{{ box.L }}px; height:{{ box.H }}px; transform:translateY({{ box.halfD }}px) translateZ({{ box.halfH }}px) rotateX(-90deg); background:linear-gradient(#111210, #090909); border-top:1.5px solid color-mix(in oklab, var(--color-accent) 45%, transparent); display:flex; align-items:center; justify-content:center;">
+                <span style="font-size:13px; font-weight:500; letter-spacing:0.42em; text-transform:uppercase; color:var(--color-text); white-space:nowrap;">Mirko Šakić&nbsp;&nbsp;/&nbsp;&nbsp;<span data-l="en">Selected work</span><span data-l="sr">Odabrani radovi</span></span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:center; margin-top:4px;">
+            <button type="button" onClick="{{ toggleBox }}" aria-expanded="{{ box.openStr }}" style="display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 18px; border:1px solid var(--color-line-strong); border-radius:var(--radius-button); background:transparent; color:var(--color-text); font-size:14px; font-weight:500; cursor:pointer; transition:all 300ms ease;" style-hover="border-color:var(--color-accent);">
+              <sc-if value="{{ box.isOpen }}" hint-placeholder-val="{{ false }}"><span data-l="en">Close the box</span><span data-l="sr">Zatvori kutiju</span></sc-if>
+              <sc-if value="{{ box.isClosed }}" hint-placeholder-val="{{ true }}"><span data-l="en">Open the box</span><span data-l="sr">Otvori kutiju</span></sc-if>
+            </button>
+          </div>
+          <p style="margin:12px 0 0; min-height:28px; text-align:center; font-size:15px; letter-spacing:0.02em; color:{{ box.capColor }};">
+            <sc-if value="{{ box.hasActive }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex; gap:12px;"><span style="font-size:13px; letter-spacing:0.12em;">{{ box.activeNum }}</span><span>{{ box.activeName }}</span><span aria-hidden="true">↗</span></span></sc-if>
+            <sc-if value="{{ box.noActive }}" hint-placeholder-val="{{ true }}"><span data-l="en">Pick a project to see how it was built.</span><span data-l="sr">Izaberi projekat da vidiš kako je napravljen.</span></sc-if>
+          </p>
+        
+
+      </div>
+    </section>
+
+    <!-- 03 USLUGE -->
+    <section id="services" class="section_services" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 24px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">03</span><span aria-hidden="true">·</span><span data-l="en">Services</span><span data-l="sr">Usluge</span></p>
+        <h2 class="section_title" style="margin:0 0 56px; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em; max-width:18ch; text-wrap:balance;"><span data-l="en">What I can do <em>for you</em>.</span><span data-l="sr">Šta mogu da uradim <em>za tebe</em>.</span></h2>
+        <div class="services_grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:16px;">
+          <article data-reveal="" class="service_card" style="padding:32px 28px; border:1px solid var(--color-line); border-radius:12px; display:flex; flex-direction:column; gap:20px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.5; color:var(--color-accent);"><rect x="3" y="5" width="22" height="18" rx="2"></rect><path d="M3 10h22"></path></svg>
+            <h3 class="service_card-title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:30px; line-height:1.1;"><span data-l="en">A website for your business</span><span data-l="sr">Sajt za tvoj biznis</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">A site where people find your services, prices and a way to reach you, right away. You add a new service or change a price yourself, without calling me. I handle design and build, and the content lives in a CMS you can edit without touching code.</span><span data-l="sr">Sajt na kome ljudi odmah nađu tvoje usluge, cene i način da te kontaktiraju. Novu uslugu ili cenu dodaješ sam, bez mene. Ja radim dizajn i izradu, a sadržaj ide u CMS koji menjaš bez znanja koda.</span></p>
+          </article>
+          <article data-reveal="" class="service_card" style="padding:32px 28px; border:1px solid var(--color-line); border-radius:12px; display:flex; flex-direction:column; gap:20px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.5; stroke-linejoin:round; color:var(--color-accent);"><rect x="3" y="6" width="22" height="16" rx="2"></rect><path d="M4 8l10 7 10-7"></path></svg>
+            <h3 class="service_card-title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:30px; line-height:1.1;"><span data-l="en">Automated inquiries</span><span data-l="sr">Automatizacija upita</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">When someone books or sends a question from your site, it lands in your inbox right away and they get an automatic confirmation. Nothing gets buried in your DMs. I set this up with Make, the same way I did for Pokret četkice.</span><span data-l="sr">Kad neko pošalje prijavu ili upit sa sajta, ti ga odmah dobiješ na mejl, a on automatski dobije potvrdu da je stiglo. Ništa se ne gubi u porukama. Povezujem to preko Make-a, kao na sajtu Pokret četkice.</span></p>
+          </article>
+          <article data-reveal="" class="service_card" style="padding:32px 28px; border:1px solid var(--color-line); border-radius:12px; display:flex; flex-direction:column; gap:20px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; color:var(--color-accent);"><path d="M23 10a10 10 0 1 0 1 7"></path><path d="M23.5 4v6h-6"></path></svg>
+            <h3 class="service_card-title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:30px; line-height:1.1;"><span data-l="en">A redesign of your current site</span><span data-l="sr">Redizajn postojećeg sajta</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">Your content stays, and the site gets a new design that works on phones too. I keep the text and photos you already have and lay them out so people find what they need faster. Design and build start from scratch.</span><span data-l="sr">Sadržaj ostaje tvoj, a sajt dobija novi dizajn koji radi i na telefonu. Zadržim tekstove i slike koje već imaš i složim ih tako da ljudi brže nađu ono što traže. Dizajn i izradu radim od nule.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 KAKO RADIM -->
+    <section id="process" class="section_process" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 24px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">04</span><span aria-hidden="true">·</span><span data-l="en">Process</span><span data-l="sr">Kako radim</span></p>
+        <h2 class="section_title" style="margin:0 0 56px; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em; max-width:18ch; text-wrap:balance;"><span data-l="en">Four steps, from first message to <em>launch</em>.</span><span data-l="sr">Četiri koraka, od prve poruke do <em>objave</em>.</span></h2>
+        <ol class="process_list" style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap:40px 28px;">
+          <li data-reveal="" class="process_step" style="padding-top:24px; border-top:1px solid var(--color-line-strong); display:flex; flex-direction:column; gap:14px;">
+            <span style="font-family:var(--font-display); font-size:44px; line-height:1; color:var(--color-accent);">01</span>
+            <h3 style="margin:0; font-size:19px; font-weight:500; line-height:1.3;"><span data-l="en">Free review and a short call</span><span data-l="sr">Besplatna analiza i kratak razgovor</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">Send me your site or your Instagram. Within 24 hours I send you what I'd change, then we have a short call about what you actually need.</span><span data-l="sr">Pošalješ mi link sajta ili Instagram profila. Za 24 sata ti pošaljem šta bih promenio, pa se kratko čujemo da vidimo šta ti stvarno treba.</span></p>
+          </li>
+          <li data-reveal="" class="process_step" style="padding-top:24px; border-top:1px solid var(--color-line-strong); display:flex; flex-direction:column; gap:14px;">
+            <span style="font-family:var(--font-display); font-size:44px; line-height:1; color:var(--color-accent);">02</span>
+            <h3 style="margin:0; font-size:19px; font-weight:500; line-height:1.3;"><span data-l="en">Plan and design</span><span data-l="sr">Plan i dizajn</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">We agree on pages, content and a deadline, in writing. Then I design it, so you see how the site will look before I build anything.</span><span data-l="sr">Dogovorimo stranice, sadržaj i rok, napismeno. Onda dizajniram, i ti vidiš kako će sajt izgledati pre nego što počnem da ga pravim.</span></p>
+          </li>
+          <li data-reveal="" class="process_step" style="padding-top:24px; border-top:1px solid var(--color-line-strong); display:flex; flex-direction:column; gap:14px;">
+            <span style="font-family:var(--font-display); font-size:44px; line-height:1; color:var(--color-accent);">03</span>
+            <h3 style="margin:0; font-size:19px; font-weight:500; line-height:1.3;"><span data-l="en">Build and test on phones</span><span data-l="sr">Izrada i testiranje na telefonu</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">I build the site and test it on phones, tablets and desktops. Phones come first, because that's where most people will find you.</span><span data-l="sr">Pravim sajt i proveravam ga na telefonu, tabletu i računaru. Telefon proveravam prvi, jer te ljudi najčešće tamo traže.</span></p>
+          </li>
+          <li data-reveal="" class="process_step" style="padding-top:24px; border-top:1px solid var(--color-line-strong); display:flex; flex-direction:column; gap:14px;">
+            <span style="font-family:var(--font-display); font-size:44px; line-height:1; color:var(--color-accent);">04</span>
+            <h3 style="margin:0; font-size:19px; font-weight:500; line-height:1.3;"><span data-l="en">Launch and handover</span><span data-l="sr">Objava i predaja</span></h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:var(--color-text-muted); text-wrap:pretty;"><span data-l="en">I set up the domain and hosting for you, you just pay for them. Then I launch and hand over every login. Small fixes in the first 30 days are on me.</span><span data-l="sr">Domen i hosting podesim ja, ti ih samo platiš. Objavim sajt i predam ti sve pristupe. Sitne izmene prvih 30 dana su besplatne.</span></p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 05 UTISCI: statične kartice. Marquee tek kad bude bar 5 utisaka. Za novi utisak kopiraj jedan <figure> blok. -->
+    <section id="testimonials" class="section_testimonials" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 24px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">05</span><span aria-hidden="true">·</span><span data-l="en">Kind words</span><span data-l="sr">Utisci</span></p>
+        <h2 class="section_title" style="margin:0 0 56px; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em; max-width:18ch; text-wrap:balance;"><span data-l="en">What clients <em>say</em>.</span><span data-l="sr">Šta kažu <em>klijenti</em>.</span></h2>
+        <div class="testimonials_grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:16px;">
+          <figure data-reveal="" class="testimonial_card" style="margin:0; padding:32px 28px; border:1px solid var(--color-line); border-radius:12px; display:flex; flex-direction:column; gap:20px;">
+            <span aria-hidden="true" style="font-family:var(--font-display); font-size:64px; line-height:0.6; height:28px; color:var(--color-accent);">“</span>
+            <blockquote style="margin:0; font-size:17px; line-height:1.6; color:var(--color-text);"><span data-l="en">Working with Mirko was a real pleasure. He built our whole website and I couldn't be happier with how it went. He listened to every request I had and carried each one out in the best possible way, so the site ended up looking exactly the way I imagined it.</span><span data-l="sr">Izuzetno mi je bilo zadovoljstvo da radim sa Mirkom, on je radio izradu celog sajta i prezadovoljna sam saradnjom. Sve moje zahteve vezane za sajt je uvažio i na najbolji mogući način ih primenio kako bi sajt dobio baš onakav izgled kakav sam zamislila.</span></blockquote>
+            <figcaption style="margin-top:auto; padding-top:20px; border-top:1px solid var(--color-line); font-size:14px; line-height:1.5; color:var(--color-text-muted);"><span style="display:block; color:var(--color-text);">Sara Lukić</span><a href="project.html?p=pokret-cetkice" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-accent);">Pokret četkice</a></figcaption>
+          </figure>
+          <figure data-reveal="" class="testimonial_card" style="margin:0; padding:32px 28px; border:1px solid var(--color-line); border-radius:12px; display:flex; flex-direction:column; gap:20px;">
+            <span aria-hidden="true" style="font-family:var(--font-display); font-size:64px; line-height:0.6; height:28px; color:var(--color-accent);">“</span>
+            <blockquote style="margin:0; font-size:17px; line-height:1.6; color:var(--color-text);"><span data-l="en">[TESTIMONIAL 2 - text]</span><span data-l="sr">[UTISAK 2 - tekst]</span></blockquote>
+            <figcaption style="margin-top:auto; padding-top:20px; border-top:1px solid var(--color-line); font-size:14px; line-height:1.5; color:var(--color-text-muted);"><span style="display:block; color:var(--color-text);">Sanja Perić</span><a href="project.html?p=crystal-art" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-accent);">Crystal Art</a></figcaption>
+          </figure>
+          <figure data-reveal="" class="testimonial_card" style="margin:0; padding:32px 28px; border:1px solid var(--color-line); border-radius:12px; display:flex; flex-direction:column; gap:20px;">
+            <span aria-hidden="true" style="font-family:var(--font-display); font-size:64px; line-height:0.6; height:28px; color:var(--color-accent);">“</span>
+            <blockquote style="margin:0; font-size:17px; line-height:1.6; color:var(--color-text);"><span data-l="en">[TESTIMONIAL 3 - text]</span><span data-l="sr">[UTISAK 3 - tekst]</span></blockquote>
+            <figcaption style="margin-top:auto; padding-top:20px; border-top:1px solid var(--color-line); font-size:14px; line-height:1.5; color:var(--color-text-muted);"><span style="display:block; color:var(--color-text);"><span data-l="en">[NAME]</span><span data-l="sr">[IME]</span></span><a href="project.html?p=pasiceva-11" style="color:var(--color-text-muted); transition:all 300ms ease;" style-hover="color:var(--color-accent);">Biznis centar Pašićeva 11</a></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 O MENI -->
+    <section id="about" class="section_about" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 40px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">06</span><span aria-hidden="true">·</span><span data-l="en">About</span><span data-l="sr">O meni</span></p>
+        <div class="about_layout" style="display:flex; flex-wrap:wrap; gap:clamp(32px, 6vw, 72px); align-items:flex-start;">
+          <div data-reveal="" class="about_portrait" role="img" aria-label="{{ portraitAlt }}" style="flex:1 1 260px; max-width:380px; aspect-ratio:4 / 5; background:url('images/portrait-cutout.png') 50% 100% / contain no-repeat; -webkit-mask-image:linear-gradient(to bottom, #000 78%, transparent); mask-image:linear-gradient(to bottom, #000 78%, transparent);"></div>
+          <div data-reveal="" class="about_content" style="flex:1.6 1 340px; min-width:0; display:flex; flex-direction:column; gap:28px;">
+            <h2 class="section_title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em;"><span data-l="en">Hi, I'm <em>Mirko</em>.</span><span data-l="sr">Ćao, ja sam <em>Mirko</em>.</span></h2>
+            <p data-l="en" style="margin:0; font-size:18px; line-height:1.7; color:var(--color-text); max-width:60ch; text-wrap:pretty;">I started from zero about two years ago, and since then I've been building websites for small and mid-sized businesses, from the first call to launch. I work remotely from Apatin (a small town on the Danube, in Serbia), with clients in Serbia, the EU and the US. Most of my work happens in Webflow, but the project decides the tool. I know HTML and CSS, I'm learning JavaScript, and I connect forms and emails with Make. You deal with me directly the whole way, nobody in between. Next on my list is vibe coding: building tools with AI as a coding partner.</p>
+            <p data-l="sr" style="margin:0; font-size:18px; line-height:1.7; color:var(--color-text); max-width:60ch; text-wrap:pretty;">Pre oko dve godine sam krenuo od nule, i od tada pravim sajtove za male i srednje biznise, od prvog razgovora do objave. Radim na daljinu iz Apatina (mali grad na Dunavu), sa klijentima iz Srbije, EU i SAD. Najviše radim u Webflow-u, ali alat biram prema tome šta projekat traži. Znam HTML i CSS, sad učim JavaScript, a forme i mejlove povezujem preko Make-a. Sve vreme radiš direktno sa mnom, bez posrednika. Sledeće na listi mi je vibe coding, pravljenje alata uz AI.</p>
+            <div class="about_tools" style="display:flex; flex-direction:column; gap:12px; padding-top:24px; border-top:1px solid var(--color-line);">
+              <p style="margin:0; font-size:12px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span data-l="en">Tools I use</span><span data-l="sr">Alati sa kojima radim</span></p>
+              <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;">
+                <li style="padding:9px 14px; border:1px solid var(--color-line-strong); border-radius:6px; font-size:14px; line-height:1;">Webflow</li>
+                <li style="padding:9px 14px; border:1px solid var(--color-line-strong); border-radius:6px; font-size:14px; line-height:1;">HTML</li>
+                <li style="padding:9px 14px; border:1px solid var(--color-line-strong); border-radius:6px; font-size:14px; line-height:1;">CSS</li>
+                <li style="padding:9px 14px; border:1px solid var(--color-line-strong); border-radius:6px; font-size:14px; line-height:1;">JavaScript</li>
+                <li style="padding:9px 14px; border:1px solid var(--color-line-strong); border-radius:6px; font-size:14px; line-height:1;">Make</li>
+                <li style="padding:9px 14px; border:1px solid var(--color-line-strong); border-radius:6px; font-size:14px; line-height:1;">Claude</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 PONUDA: besplatna analiza -->
+    <section id="offer" class="section_offer" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto;">
+        <p class="section_label" style="margin:0 0 24px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">07</span><span aria-hidden="true">·</span><span data-l="en">Free review</span><span data-l="sr">Besplatna analiza</span></p>
+        <div data-reveal="" class="offer_box" style="padding:clamp(28px, 6vw, 72px); border:1px solid var(--color-line-strong); border-radius:16px; background:var(--color-surface); display:flex; flex-wrap:wrap; gap:40px 64px; align-items:flex-end;">
+          <div style="flex:1.4 1 380px; min-width:0; display:flex; flex-direction:column; gap:24px;">
+            <h2 class="section_title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(36px, 4.8vw, 60px); line-height:1.05; letter-spacing:-0.02em; text-wrap:balance;"><span data-l="en">Send me your link. I'll tell you what I'd <em>change</em>.</span><span data-l="sr">Pošalji mi link, a ja ti kažem šta bih <em>promenio</em>.</span></h2>
+            <p style="margin:0; font-size:17px; line-height:1.65; color:var(--color-text-muted); max-width:58ch; text-wrap:pretty;"><span data-l="en">Send me a link to your site, or your Instagram if you don't have a site yet. Within 24 hours you'll get a short write-up of what I'd change and why. No strings attached.</span><span data-l="sr">Pošalji mi link svog sajta. Ako nemaš sajt, pošalji Instagram profil. Za 24 sata dobiješ od mene kratak pregled šta bih promenio i zašto. Bez obaveze da posle radimo zajedno.</span></p>
+          </div>
+          <div style="flex:1 1 260px; display:flex; flex-direction:column; gap:20px; align-items:flex-start;">
+            <p style="margin:0; display:flex; gap:12px; align-items:baseline; font-size:15px; line-height:1.55; color:var(--color-text);"><span aria-hidden="true" style="flex:0 0 auto; width:8px; height:8px; border-radius:50%; background:var(--color-accent); transform:translateY(-1px);"></span><span><span data-l="en">I take on 3-4 projects a month, so sometimes there's a short wait before I can start.</span><span data-l="sr">Uzimam 3-4 projekta mesečno, pa se nekad čeka da se oslobodi mesto.</span></span></p>
+            <a href="#contact" class="button" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:var(--radius-button); background:var(--color-accent); color:var(--color-on-accent); font-size:16px; font-weight:500; transition:all 300ms ease;" style-hover="background:var(--color-text); color:var(--color-on-accent); transform:translateY(-2px); box-shadow:0 10px 28px -10px color-mix(in oklab, var(--color-accent) 70%, transparent);"><span data-l="en">Send your link</span><span data-l="sr">Pošalji link</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.6;"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 ČESTA PITANJA (accordion, tekst je u FAQ nizu u logici) -->
+    <section id="faq" class="section_faq" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto; display:flex; flex-wrap:wrap; gap:40px 64px;">
+        <div style="flex:1 1 280px;">
+          <p class="section_label" style="margin:0 0 24px; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">08</span><span aria-hidden="true">·</span><span data-l="en">FAQ</span><span data-l="sr">Pitanja</span></p>
+          <h2 class="section_title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em; max-width:12ch; text-wrap:balance;"><span data-l="en">Questions people <em>ask</em>.</span><span data-l="sr">Česta <em>pitanja</em>.</span></h2>
+        </div>
+        <div class="faq_list" style="flex:2 1 440px; min-width:0; border-top:1px solid var(--color-line);">
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+            <div class="faq_item" style="border-bottom:1px solid var(--color-line);">
+              <h3 style="margin:0;">
+                <button type="button" id="{{ f.btnId }}" onClick="{{ f.toggle }}" aria-expanded="{{ f.expanded }}" aria-controls="{{ f.panelId }}" class="faq_question" style="width:100%; min-height:64px; padding:20px 0; display:flex; align-items:center; justify-content:space-between; gap:24px; background:transparent; border:0; color:var(--color-text); font-size:19px; font-weight:500; line-height:1.35; text-align:left; cursor:pointer; transition:all 300ms ease;" style-hover="color:var(--color-accent);">
+                  <span><span data-l="en">{{ f.q.en }}</span><span data-l="sr">{{ f.q.sr }}</span></span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" aria-hidden="true" style="flex:0 0 auto; stroke-width:1.6; color:var(--color-accent); transform:{{ f.iconTransform }}; transition:transform .3s ease;"><path d="M8 2v12M2 8h12"></path></svg>
+                </button>
+              </h3>
+              <div id="{{ f.panelId }}" role="region" aria-labelledby="{{ f.btnId }}" aria-hidden="{{ f.hidden }}" class="faq_answer" style="display:grid; grid-template-rows:{{ f.rows }}; transition:grid-template-rows .35s ease;">
+                <div style="overflow:hidden;">
+                  <p style="margin:0; padding:0 40px 24px 0; font-size:16px; line-height:1.65; color:var(--color-text-muted); max-width:62ch; text-wrap:pretty;"><span data-l="en">{{ f.a.en }}</span><span data-l="sr">{{ f.a.sr }}</span></p>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 KONTAKT -->
+    <section id="contact" class="section_contact" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); scroll-margin-top:68px;">
+      <div style="max-width:var(--content-max); margin:0 auto; display:flex; flex-wrap:wrap; gap:48px 72px;">
+        <div class="contact_info" style="flex:1 1 320px; min-width:0; display:flex; flex-direction:column; gap:24px;">
+          <p class="section_label" style="margin:0; display:flex; gap:10px; font-size:12px; font-weight:500; line-height:1; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span style="color:var(--color-accent);">09</span><span aria-hidden="true">·</span><span data-l="en">Contact</span><span data-l="sr">Kontakt</span></p>
+          <h2 class="section_title" style="margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(38px, 5.2vw, 64px); line-height:1.04; letter-spacing:-0.02em; text-wrap:balance;"><span data-l="en">Tell me about your <em>project</em>.</span><span data-l="sr">Pričaj mi o svom <em>projektu</em>.</span></h2>
+          <p style="margin:0; font-size:17px; line-height:1.65; color:var(--color-text-muted); max-width:44ch;"><span data-l="en">A few lines about your business and what you need is plenty. I reply within 24 hours.</span><span data-l="sr">Napiši par rečenica o svom biznisu i šta ti treba. Odgovaram u roku od 24 sata.</span></p>
+          <div class="contact_links" style="margin-top:8px; display:flex; flex-direction:column;">
+            <p style="margin:0 0 8px; font-size:12px; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-muted);"><span data-l="en">Or reach me directly</span><span data-l="sr">Ili mi se javi direktno</span></p>
+            <a href="mailto:mirko.sakic11@gmail.com" class="contact_link" style="display:flex; align-items:center; gap:14px; min-height:56px; border-top:1px solid var(--color-line); color:var(--color-text); transition:all 300ms ease;" style-hover="color:var(--color-accent);">
+              <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="currentColor" aria-hidden="true" style="flex:0 0 auto; stroke-width:1.5; stroke-linejoin:round; color:var(--color-accent);"><rect x="2" y="4.5" width="18" height="13" rx="2"></rect><path d="M3 6l8 6 8-6"></path></svg>
+              <span style="flex:1; min-width:0; overflow-wrap:anywhere;">mirko.sakic11@gmail.com</span>
+              <span style="font-size:13px; color:var(--color-text-muted);">Email</span>
+            </a>
+            <a href="https://wa.me/381655603915" target="_blank" rel="noopener noreferrer" class="contact_link" style="display:flex; align-items:center; gap:14px; min-height:56px; border-top:1px solid var(--color-line); color:var(--color-text); transition:all 300ms ease;" style-hover="color:var(--color-accent);">
+              <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="currentColor" aria-hidden="true" style="flex:0 0 auto; stroke-width:1.5; stroke-linejoin:round; color:var(--color-accent);"><path d="M3.5 18.5l1.2-3.6A8 8 0 1 1 7.6 17.6z"></path></svg>
+              <span style="flex:1;">+381 65 560 3915</span>
+              <span style="font-size:13px; color:var(--color-text-muted);">WhatsApp</span>
+            </a>
+            <a href="https://instagram.com/sakic.mirko" target="_blank" rel="noopener noreferrer" class="contact_link" style="display:flex; align-items:center; gap:14px; min-height:56px; border-top:1px solid var(--color-line); border-bottom:1px solid var(--color-line); color:var(--color-text); transition:all 300ms ease;" style-hover="color:var(--color-accent);">
+              <svg width="20" height="20" viewBox="0 0 22 22" fill="none" stroke="currentColor" aria-hidden="true" style="flex:0 0 auto; stroke-width:1.5; color:var(--color-accent);"><rect x="3" y="3" width="16" height="16" rx="5"></rect><circle cx="11" cy="11" r="3.8"></circle><circle cx="15.6" cy="6.4" r="0.6"></circle></svg>
+              <span style="flex:1;">@sakic.mirko</span>
+              <span style="font-size:13px; color:var(--color-text-muted);">Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact_form-wrap" style="flex:1.2 1 360px; min-width:0;">
+          <!-- FORMA: nema backend. U Webflow-u zameni ovo Webflow formom (poruke stižu na mirko.sakic11@gmail.com),
+               ili stavi Make webhook URL u action="" (Make scenario: Webhook -> Gmail na mirko.sakic11@gmail.com). -->
+          <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+            <form action="#" method="post" onSubmit="{{ onSubmit }}" class="contact_form" style="padding:clamp(24px, 4vw, 40px); border:1px solid var(--color-line); border-radius:16px; display:flex; flex-direction:column; gap:20px;">
+              <div class="form_field" style="display:flex; flex-direction:column; gap:8px;">
+                <label for="contact-name" style="font-size:14px; font-weight:500;"><span data-l="en">Name</span><span data-l="sr">Ime</span></label>
+                <input id="contact-name" name="name" type="text" autocomplete="name" required="{{ true }}" placeholder="{{ ph.name }}" style="width:100%; min-height:50px; padding:12px 16px; background:var(--color-bg); border:1px solid var(--color-line-strong); border-radius:8px; color:var(--color-text); font-size:16px; outline:none; transition:border-color .2s;" style-focus="border-color:var(--color-accent);">
+              </div>
+              <div class="form_field" style="display:flex; flex-direction:column; gap:8px;">
+                <label for="contact-email" style="font-size:14px; font-weight:500;">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required="{{ true }}" placeholder="{{ ph.email }}" style="width:100%; min-height:50px; padding:12px 16px; background:var(--color-bg); border:1px solid var(--color-line-strong); border-radius:8px; color:var(--color-text); font-size:16px; outline:none; transition:border-color .2s;" style-focus="border-color:var(--color-accent);">
+              </div>
+              <div class="form_field" style="display:flex; flex-direction:column; gap:8px;">
+                <label for="contact-site" style="font-size:14px; font-weight:500;"><span data-l="en">Website or Instagram</span><span data-l="sr">Link sajta ili Instagrama</span> <span style="font-weight:400; color:var(--color-text-muted);"><span data-l="en">(optional)</span><span data-l="sr">(opciono)</span></span></label>
+                <input id="contact-site" name="website" type="text" autocomplete="url" placeholder="{{ ph.site }}" style="width:100%; min-height:50px; padding:12px 16px; background:var(--color-bg); border:1px solid var(--color-line-strong); border-radius:8px; color:var(--color-text); font-size:16px; outline:none; transition:border-color .2s;" style-focus="border-color:var(--color-accent);">
+              </div>
+              <div class="form_field" style="display:flex; flex-direction:column; gap:8px;">
+                <label for="contact-message" style="font-size:14px; font-weight:500;"><span data-l="en">Message</span><span data-l="sr">Poruka</span></label>
+                <textarea id="contact-message" name="message" rows="5" required="{{ true }}" placeholder="{{ ph.msg }}" style="width:100%; padding:12px 16px; background:var(--color-bg); border:1px solid var(--color-line-strong); border-radius:8px; color:var(--color-text); font-size:16px; line-height:1.55; resize:vertical; outline:none; transition:border-color .2s;" style-focus="border-color:var(--color-accent);"></textarea>
+              </div>
+              <button type="submit" class="button" style="align-self:flex-start; display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border:0; border-radius:var(--radius-button); background:var(--color-accent); color:var(--color-on-accent); font-size:16px; font-weight:500; cursor:pointer; transition:all 300ms ease;" style-hover="background:var(--color-text); color:var(--color-on-accent); transform:translateY(-2px); box-shadow:0 10px 28px -10px color-mix(in oklab, var(--color-accent) 70%, transparent);"><span data-l="en">Send message</span><span data-l="sr">Pošalji upit</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.6;"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></button>
+            </form>
+          </sc-if>
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <div role="status" class="contact_success" style="padding:clamp(24px, 4vw, 40px); border:1px solid var(--color-accent); border-radius:16px; display:flex; flex-direction:column; gap:12px;">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; color:var(--color-accent);"><path d="M5 14.5l6 6L23 8"></path></svg>
+              <p style="margin:0; font-family:var(--font-display); font-size:32px; line-height:1.1;"><span data-l="en">Thanks, got it.</span><span data-l="sr">Hvala, stiglo je.</span></p>
+              <p style="margin:0; font-size:16px; color:var(--color-text-muted);"><span data-l="en">I'll reply within 24 hours.</span><span data-l="sr">Javljam ti se u roku od 24 sata.</span></p>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <!-- P.S. -->
+    <section class="section_ps" style="padding:var(--space-section) var(--space-gutter); border-top:1px solid var(--color-line); text-align:center;">
+      <div data-reveal="" style="max-width:820px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:28px;">
+        <p style="margin:0; font-family:var(--font-display); font-size:clamp(28px, 3.8vw, 46px); line-height:1.15; letter-spacing:-0.01em; text-wrap:balance;"><span style="font-style:italic; color:var(--color-accent);">P.S.</span> <span data-l="en">Not sure where to start? Send me your link, and within 24 hours you'll have my notes on what I'd change.</span><span data-l="sr">Ako nisi siguran odakle da kreneš, pošalji mi link sajta. Za 24 sata dobiješ besplatan pregled šta bih promenio.</span></p>
+        <a href="#contact" class="button" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 24px; border-radius:var(--radius-button); background:var(--color-accent); color:var(--color-on-accent); font-size:16px; font-weight:500; transition:all 300ms ease;" style-hover="background:var(--color-text); color:var(--color-on-accent); transform:translateY(-2px); box-shadow:0 10px 28px -10px color-mix(in oklab, var(--color-accent) 70%, transparent);"><span data-l="en">Send your link</span><span data-l="sr">Pošalji link</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" aria-hidden="true" style="stroke-width:1.6;"><path d="M2 7h10M8 3l4 4-4 4"></path></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" style="position:relative; z-index:1; padding:32px var(--space-gutter); border-top:1px solid var(--color-line);">
+    <div style="max-width:var(--content-max); margin:0 auto; display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:12px 32px; font-size:14px; color:var(--color-text-muted);">
+      <span style="font-family:var(--font-display); font-size:22px; color:var(--color-text);">Mirko Šakić</span>
+      <span>© 2026</span>
+      <span><span data-l="en">Designed and built by Mirko Šakić</span><span data-l="sr">Dizajnirao i napravio Mirko Šakić</span></span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C8F25A&quot;,&quot;options&quot;:[&quot;#C8F25A&quot;,&quot;#FF5A1F&quot;,&quot;#F2B33D&quot;,&quot;#7FE0C4&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brend&quot;},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;en&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;sr&quot;],&quot;tsType&quot;:&quot;'en' | 'sr'&quot;,&quot;section&quot;:&quot;Jezik&quot;},&quot;bgGrid&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Pozadina&quot;},&quot;bgGlow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Pozadina&quot;}}">
+const ROT = {
+  en: ["salons", "tattoo studios", "physio clinics", "workshop hosts", "small businesses"],
+  sr: ["salonima", "tattoo studijima", "fizioterapeutima", "radionicama", "malim firmama"]
+};
+
+const META = {
+  en: { title: "Mirko Šakić · Web developer", desc: "I design and build websites for small businesses, from first call to launch. Based in Serbia, working remotely with clients in the EU and US." },
+  sr: { title: "Mirko Šakić · Web developer", desc: "Pravim sajtove za male biznise, od dizajna do objave. Iz Srbije, radim na daljinu sa klijentima iz EU i SAD." }
+};
+
+const PH = {
+  en: { name: "Your name", email: "you@business.com", site: "yoursite.com or @instagram", msg: "What does your business do, and what do you need?", openMenu: "Open menu", closeMenu: "Close menu", lang: "Language", avatar: "Illustrated avatar of Mirko Šakić", portrait: "Portrait of Mirko Šakić" },
+  sr: { name: "Tvoje ime", email: "ti@biznis.rs", site: "tvojsajt.rs ili @instagram", msg: "Čime se baviš i šta ti treba?", openMenu: "Otvori meni", closeMenu: "Zatvori meni", lang: "Jezik", avatar: "Ilustrovani avatar, Mirko Šakić", portrait: "Portret, Mirko Šakić" }
+};
+
+const FAQ = [
+  {
+    q: { en: "How much does a website cost?", sr: "Koliko košta sajt?" },
+    a: {
+      en: "It depends on the number of pages, whether you need a CMS, and how many forms and automations there are. A one-page site and a site with a catalog and sign-ups are different jobs. After a short call you get a quote, before any work starts.",
+      sr: "Zavisi od broja stranica, da li ti treba CMS i koliko ima formi i automatizacija. Landing stranica i sajt sa katalogom i prijavama nisu isti posao. Posle kratkog razgovora dobiješ ponudu sa cenom, pre nego što bilo šta počne."
+    }
+  },
+  {
+    q: { en: "How long does it take?", sr: "Koliko traje izrada?" },
+    a: {
+      en: "It depends on the size of the site and how quickly the text and photos come in. The deadline is always in writing in the quote, before we start.",
+      sr: "Zavisi od veličine sajta i od toga koliko brzo stignu tekstovi i slike. Rok ti uvek napišem u ponudi, pre početka."
+    }
+  },
+  {
+    q: { en: "Can I update the content myself?", sr: "Mogu li sam da menjam sadržaj?" },
+    a: {
+      en: "Yes. Text, photos, prices and new items, like a new service or workshop, you update in the CMS with no code.",
+      sr: "Možeš. Tekstove, slike, cene i nove stavke, kao novu uslugu ili radionicu, menjaš sam kroz CMS, bez koda."
+    }
+  },
+  {
+    q: { en: "Do you design too, or only build?", sr: "Radiš li i dizajn?" },
+    a: {
+      en: "Both. I usually design and build the whole site myself. If you already have a design, from an agency or in Figma, I can build from that.",
+      sr: "Radim. Obično sam dizajniram i pravim ceo sajt. Ako već imaš dizajn, na primer od agencije ili u Figmi, mogu da napravim sajt po njemu."
+    }
+  },
+  {
+    q: { en: "Do you work with clients outside Serbia?", sr: "Radiš li sa klijentima van Srbije?" },
+    a: {
+      en: "Yes, with clients in the EU and the US. Calls happen online, and day to day we talk over email or WhatsApp. Serbia is on Central European Time, so my afternoons overlap with US mornings.",
+      sr: "Radim, sa klijentima iz EU i SAD. Razgovori idu online, a dopisujemo se mejlom ili na WhatsApp-u."
+    }
+  },
+  {
+    q: { en: "What if I don't like something?", sr: "Šta ako mi nešto ne odgovara?" },
+    a: {
+      en: "Tell me and we'll fix it. You see the design before I build anything, so most changes happen early, while they're quick. After launch, small fixes in the first 30 days are free.",
+      sr: "Kažeš mi i ispravimo. Dizajn vidiš pre izrade, pa se većina izmena dogovori na vreme. Posle objave, sitne izmene prvih 30 dana su besplatne."
+    }
+  }
+];
+
+const EASE = "cubic-bezier(.2,.7,.2,1)";
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let lang = props && props.defaultLang === "sr" ? "sr" : "en";
+    try { const s = window.localStorage.getItem("ms_lang"); if (s === "en" || s === "sr") lang = s; } catch (e) {}
+    let isMobile = false;
+    try { isMobile = window.matchMedia("(max-width: 767px)").matches; } catch (e) {}
+    this.state = { lang, rot: 0, menuOpen: false, isMobile, faqOpen: -1, sent: false, projects: [] };
+    this.rootRef = React.createRef();
+    this.rotRefEn = React.createRef();
+    this.rotRefSr = React.createRef();
+    this.reveals = new Map();
+    this.spotRef = React.createRef();
+    this.boxRef = React.createRef();
+  }
+
+  componentDidMount() {
+    // Projekti se učitavaju iz projects.js (isti podaci kao na stranici projekta).
+    import("./projects.js")
+      .then((m) => this.setState({ projects: m.PROJECTS }, () => { if (!this.reduce) this.setupReveal(); }))
+      .catch((e) => console.error("projects.js", e));
+    this.applyLang();
+    this.applyAccent();
+    try {
+      this.reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      this.mq = window.matchMedia("(max-width: 767px)");
+      this.setState({ isMobile: this.mq.matches });
+      this.syncMobile = () => {
+        const m = window.matchMedia("(max-width: 767px)").matches;
+        if (m !== this.state.isMobile) this.setState({ isMobile: m, menuOpen: false });
+      };
+      this.onMq = () => this.syncMobile();
+      this.onResize = () => { cancelAnimationFrame(this.rz); this.rz = requestAnimationFrame(this.syncMobile); };
+      window.addEventListener("resize", this.onResize);
+      this.syncTimer = setTimeout(this.syncMobile, 300);
+      if (this.mq.addEventListener) this.mq.addEventListener("change", this.onMq); else this.mq.addListener(this.onMq);
+    } catch (e) {}
+    if (!this.reduce) {
+      this.introAnim();
+      this.setupReveal();
+      this.timer = setInterval(this.tick, 2500);
+    }
+    this.setupBackground();
+    const measure = () => { const el = this.boxRef.current; if (el) this.setState({ boxW: el.clientWidth }); };
+    measure();
+    if (this.reduce || !("IntersectionObserver" in window)) this.setState({ boxOpen: true });
+    else if (this.boxRef.current) {
+      this.boxIO = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting)) { this.boxIO.disconnect(); setTimeout(() => this.setBoxOpen(true), 350); }
+      }, { threshold: 0.45 });
+      this.boxIO.observe(this.boxRef.current);
+    }
+    if ("ResizeObserver" in window && this.boxRef.current) { this.boxRO = new ResizeObserver(measure); this.boxRO.observe(this.boxRef.current); }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.lang !== this.state.lang) this.applyLang();
+    if (prevProps.accent !== this.props.accent) this.applyAccent();
+    if (prevProps.bgGrid !== this.props.bgGrid) this.queueSpot();
+    if (prevProps.bgGlow !== this.props.bgGlow) this.syncGlow();
+  }
+
+  componentWillUnmount() {
+    if (this.boxRO) this.boxRO.disconnect();
+    if (this.boxIO) this.boxIO.disconnect();
+    clearTimeout(this.settleT);
+    window.removeEventListener("mousemove", this.onMove);
+    window.removeEventListener("scroll", this.onScroll);
+    cancelAnimationFrame(this.spotRaf);
+    window.removeEventListener("resize", this.onResize);
+    clearTimeout(this.syncTimer);
+    cancelAnimationFrame(this.rz);
+    clearInterval(this.timer);
+    if (this.io) this.io.disconnect();
+    try { if (this.mq) (this.mq.removeEventListener ? this.mq.removeEventListener("change", this.onMq) : this.mq.removeListener(this.onMq)); } catch (e) {}
+  }
+
+  // Pozadina: svetlo koje prati miša i sjaj iza avatara.
+  setupBackground() {
+    this.ptr = null;
+    this.onMove = (e) => { this.ptr = { x: e.clientX, y: e.clientY }; this.queueSpot(); };
+    this.onScroll = () => { if (this.ptr) this.queueSpot(); };
+    if (!this.reduce) {
+      window.addEventListener("mousemove", this.onMove, { passive: true });
+      window.addEventListener("scroll", this.onScroll, { passive: true });
+    }
+    this.queueSpot();
+    this.syncGlow();
+  }
+
+  queueSpot() {
+    if (this.spotRaf) return;
+    this.spotRaf = requestAnimationFrame(() => {
+      this.spotRaf = 0;
+      const el = this.spotRef.current, root = this.rootRef.current;
+      if (!el || !root) return;
+      const r = root.getBoundingClientRect();
+      let x, y;
+      if (this.ptr) { x = this.ptr.x - r.left; y = this.ptr.y - r.top; }
+      else {
+        const a = root.querySelector("[data-hero-avatar]");
+        const ar = a ? a.getBoundingClientRect() : null;
+        x = ar ? ar.left + ar.width / 2 - r.left : r.width / 2;
+        y = ar ? ar.top + ar.height / 2 - r.top : 320;
+      }
+      const tx = Math.round(x - 320), ty = Math.round(y - 320);
+      el.style.transform = "translate3d(" + tx + "px," + ty + "px,0)";
+      el.style.backgroundPosition = (-tx) + "px " + (-ty) + "px, " + (-tx) + "px " + (-ty) + "px, 0 0";
+    });
+  }
+
+  syncGlow() {
+    if (this.reduce) return;
+    requestAnimationFrame(() => {
+      const root = this.rootRef.current;
+      const g = root && root.querySelector("[data-glow]");
+      if (!g || g.__breathing || !g.animate) return;
+      g.__breathing = true;
+      g.animate(
+        [{ opacity: 0.55, transform: "translate(-50%, -50%) scale(0.92)" }, { opacity: 1, transform: "translate(-50%, -50%) scale(1.06)" }],
+        { duration: 4200, direction: "alternate", iterations: Infinity, easing: "ease-in-out" }
+      );
+    });
+  }
+
+  setBoxOpen(open) {
+    clearTimeout(this.settleT);
+    this.setState({ boxOpen: open, boxHover: -1, boxSettled: false });
+    // posle animacije otvaranja hover reaguje odmah (bez kašnjenja)
+    if (open) this.settleT = setTimeout(() => this.setState({ boxSettled: true }), 1500);
+  }
+
+  boxVals(sr) {
+    const list = this.state.projects || [];
+    // SLOTS = koliko kartica staje u kutiju. Prazna mesta čekaju nove projekte; kad ih bude više, kutija se sama produži.
+    const SLOTS = 6;
+    const N = Math.max(list.length, SLOTS), gap = 112, T = 8;
+    const L = (N - 1) * gap + 230, D = 350, H = 118, CW = 296, CH = 236, lidH = 320, WT = 12, LT = 16;
+    const open = !!this.state.boxOpen;
+    const scale = Math.max(0.36, Math.min(1, (this.state.boxW || 1100) / 1100));
+    const act = this.state.boxHover ?? -1;
+    const ap = list[act];
+    const accent = "var(--color-accent)";
+    return {
+      box: {
+        L, D, H, CW, CH, T, negT: -T, lidH, scale, sceneH: Math.round(760 * scale),
+        slots: Array.from({ length: N }, (_, i) => ({ x: -L / 2 + 115 + i * gap - 2 })),
+        slotTop: -D / 2 + 28, slotH: D - 56,
+        WT, LT, halfLT: LT / 2, negHalfLT: -LT / 2,
+        innerFrontY: D / 2 - WT, innerBackY: -D / 2 + WT, innerNearX: L / 2 - WT, innerFarX: -L / 2 + WT,
+        rimFrontTop: D / 2 - WT, rimNearLeft: L / 2 - WT,
+        lidRimFrontTop: D - LT / 2, lidRimNearLeft: L - LT / 2,
+        lidZ: H + 1, lidAngle: open ? 108 : 0, lidDelay: open ? 0 : 0.45,
+        isOpen: open, isClosed: !open, openStr: String(open), lidPe: open ? "none" : "auto",
+        halfL: L / 2, negHalfL: -L / 2, halfD: D / 2, negHalfD: -D / 2, halfH: H / 2, negHalfH: -H / 2,
+        negHalfCW: -CW / 2, negHalfCH: -CH / 2, lidTop: -D / 2 - lidH,
+        glowLeft: -L / 2 - 140, glowTop: -D / 2 - 140, glowW: L + 280, glowH: D + 280,
+        hasActive: open && !!ap, noActive: !(open && ap),
+        activeNum: ap ? ap.num : "", activeName: ap ? ap.name : "",
+        capColor: ap ? accent : "var(--color-text-muted)"
+      },
+      boxCards: list.map((p, i) => {
+        const on = i === act;
+        return {
+          num: p.num, name: p.name,
+          href: "project.html?p=" + p.slug,
+          aria: (sr ? "Pogledaj projekat " : "View project ") + p.name,
+          bgImage: p.image ? 'url("' + p.image + '")' : "none",
+          x: -L / 2 + 115 + i * gap,
+          z: open ? CH / 2 + 3 + (on ? 84 : 0) : CH / 2 + 3 - (CH - H + 16),
+          delay: open ? (this.state.boxSettled ? 0 : 0.55 + i * 0.07) : 0,
+          dur: open && this.state.boxSettled ? 0.75 : 0.6,
+          opacity: open ? 1 : 0,
+          visibility: open ? "visible" : "hidden",
+          pe: open ? "auto" : "none",
+          fadeDelay: open ? (this.state.boxSettled ? 0 : 0.5 + i * 0.07) : 0.3,
+          visDelay: open ? 0 : 0.65,
+          border: on ? accent : "color-mix(in oklab, var(--color-accent) 55%, #000)",
+          bg: on ? "linear-gradient(160deg, color-mix(in oklab, var(--color-accent) 92%, #000), color-mix(in oklab, var(--color-accent) 62%, #000))" : "linear-gradient(160deg, color-mix(in oklab, var(--color-accent) 16%, #0b0b0b), #0a0a0a 72%)",
+          color: on ? "var(--color-on-accent)" : "var(--color-text)",
+          edge: on ? "color-mix(in oklab, var(--color-accent) 55%, #000)" : "color-mix(in oklab, var(--color-accent) 30%, #050505)",
+          edgeLight: on ? "color-mix(in oklab, var(--color-accent) 85%, #fff)" : "color-mix(in oklab, var(--color-accent) 60%, #111)",
+          shadow: on ? "0 0 60px -6px color-mix(in oklab, var(--color-accent) 60%, transparent)" : "0 0 0 0 transparent",
+          enter: () => { clearTimeout(this.leaveT); if (this.state.boxHover !== i) this.setState({ boxHover: i }); },
+          leave: () => { clearTimeout(this.leaveT); this.leaveT = setTimeout(() => this.setState((s) => (s.boxHover === i ? { boxHover: -1 } : null)), 120); }
+        };
+      })
+    };
+  }
+
+  applyLang() {
+    const l = this.state.lang;
+    const d = document.documentElement;
+    d.setAttribute("data-lang", l);
+    d.setAttribute("lang", l === "sr" ? "sr-Latn" : "en");
+    document.title = META[l].title;
+    const m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute("content", META[l].desc);
+  }
+
+  applyAccent() {
+    if (this.props.accent) document.documentElement.style.setProperty("--color-accent", this.props.accent);
+  }
+
+  setLang(l) {
+    this.setState({ lang: l });
+    try { window.localStorage.setItem("ms_lang", l); } catch (e) {}
+  }
+
+  // Hero: reči ulaze jedna za drugom, pa avatar (fade + blago uvećanje), pa red sa imenom i dugmad.
+  introAnim() {
+    const root = this.rootRef.current;
+    if (!root || !root.animate) return;
+    const words = Array.from(root.querySelectorAll("[data-hw]")).filter((w) => w.offsetParent !== null);
+    words.forEach((w, i) => w.animate(
+      [{ opacity: 0, transform: "translateY(0.35em)" }, { opacity: 1, transform: "none" }],
+      { duration: 700, delay: 80 + i * 70, easing: EASE, fill: "backwards" }
+    ));
+    const t = 80 + words.length * 70;
+    root.querySelectorAll("[data-hero-avatar]").forEach((el) => el.animate(
+      [{ opacity: 0, transform: "scale(0.86)" }, { opacity: 1, transform: "none" }],
+      { duration: 900, delay: t, easing: EASE, fill: "backwards" }
+    ));
+    root.querySelectorAll("[data-hero-fade]").forEach((el, i) => el.animate(
+      [{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "none" }],
+      { duration: 700, delay: t + 300 + i * 120, easing: EASE, fill: "backwards" }
+    ));
+  }
+
+  // Na skrol: sekcije i kartice ulaze odozdo uz fade, samo jednom.
+  setupReveal() {
+    const root = this.rootRef.current;
+    if (!root || !root.animate || !("IntersectionObserver" in window)) return;
+    if (!this.io) this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        this.io.unobserve(e.target);
+        const a = this.reveals.get(e.target);
+        if (a) a.play();
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    root.querySelectorAll("[data-reveal]").forEach((el) => {
+      if (this.reveals.has(el) || el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
+      const a = el.animate(
+        [{ opacity: 0, transform: "translateY(28px)" }, { opacity: 1, transform: "none" }],
+        { duration: 800, easing: EASE, fill: "both" }
+      );
+      a.pause();
+      a.onfinish = () => a.cancel();
+      this.reveals.set(el, a);
+      this.io.observe(el);
+    });
+  }
+
+  // Reč koja se smenjuje u hero naslovu, na 2,5 s.
+  tick = () => {
+    if (document.hidden) return;
+    const els = [this.rotRefEn.current, this.rotRefSr.current].filter((el) => el && el.animate);
+    const n = ROT.en.length;
+    if (!els.length) { this.setState((s) => ({ rot: (s.rot + 1) % n })); return; }
+    const outs = els.map((el) => el.animate(
+      [{ opacity: 1, transform: "none" }, { opacity: 0, transform: "translateY(-0.2em)" }],
+      { duration: 240, easing: "ease-in", fill: "forwards" }
+    ));
+    outs[0].onfinish = () => {
+      this.setState((s) => ({ rot: (s.rot + 1) % n }), () => {
+        els.forEach((el) => el.animate(
+          [{ opacity: 0, transform: "translateY(0.2em)" }, { opacity: 1, transform: "none" }],
+          { duration: 420, easing: EASE }
+        ));
+        outs.forEach((a) => a.cancel());
+      });
+    };
+  };
+
+  onSubmit = (e) => {
+    // Bez backenda za sada. Kad povežeš Webflow formu ili Make webhook, ukloni preventDefault.
+    e.preventDefault();
+    this.setState({ sent: true });
+  };
+
+  renderVals() {
+    const { lang, rot, menuOpen, isMobile, faqOpen, sent } = this.state;
+    const sr = lang === "sr";
+    const ph = PH[lang];
+    return {
+      rootRef: this.rootRef,
+      boxRef: this.boxRef,
+      toggleBox: () => this.setBoxOpen(!this.state.boxOpen),
+      ...this.boxVals(sr),
+      spotRef: this.spotRef,
+      bgGrid: this.props.bgGrid !== false,
+      bgGlow: this.props.bgGlow !== false,
+      rotRefEn: this.rotRefEn,
+      rotRefSr: this.rotRefSr,
+      rotEn: ROT.en[rot],
+      rotSr: ROT.sr[rot],
+      isMobile,
+      notMobile: !isMobile,
+      menuVisible: isMobile && menuOpen,
+      menuClosed: !menuOpen,
+      menuIsOpen: menuOpen,
+      menuExpanded: String(menuOpen),
+      menuLabel: menuOpen ? ph.closeMenu : ph.openMenu,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      langLabel: ph.lang,
+      setEn: () => this.setLang("en"),
+      setSr: () => this.setLang("sr"),
+      enPressed: String(!sr),
+      srPressed: String(sr),
+      enBg: sr ? "transparent" : "var(--color-surface-2)",
+      srBg: sr ? "var(--color-surface-2)" : "transparent",
+      enColor: sr ? "var(--color-text-muted)" : "var(--color-text)",
+      srColor: sr ? "var(--color-text)" : "var(--color-text-muted)",
+      avatarAlt: ph.avatar,
+      portraitAlt: ph.portrait,
+      show3D: this.props.show3DIntro !== false,
+      projects: (this.state.projects || []).map((p) => ({
+        ...p,
+        id: "work-" + p.slug,
+        anchor: "#work-" + p.slug,
+        pageHref: "project.html?p=" + p.slug,
+        pageAria: (sr ? "Pogledaj projekat " : "View project ") + p.name,
+        hasImage: !!p.image,
+        bgImage: p.image ? 'url("' + p.image + '")' : "none",
+        noImage: !p.image,
+        alt: sr ? "Screenshot sajta " + p.domain : "Screenshot of " + p.domain,
+        shotEn: "Screenshot - " + p.domain + ", homepage",
+        shotSr: "Screenshot - " + p.domain + ", početna",
+        visitAria: sr ? "Otvori " + p.domain + " u novom tabu" : "Open " + p.domain + " in a new tab",
+        indexAria: (sr ? "Idi na projekat " : "Jump to project ") + p.name
+      })),
+      faqs: FAQ.map((f, i) => {
+        const open = faqOpen === i;
+        return {
+          ...f,
+          btnId: "faq-q-" + i,
+          panelId: "faq-a-" + i,
+          expanded: String(open),
+          hidden: String(!open),
+          rows: open ? "1fr" : "0fr",
+          iconTransform: open ? "rotate(45deg)" : "none",
+          toggle: () => this.setState((s) => ({ faqOpen: s.faqOpen === i ? -1 : i }))
+        };
+      }),
+      ph,
+      sent,
+      notSent: !sent,
+      onSubmit: this.onSubmit
+    };
+  }
+}
+</script>
+</body>
+</html>
