@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://mirandev.com/</loc></url>
-  <url><loc>https://mirandev.com/project.html?p=pokret-cetkice</loc></url>
-  <url><loc>https://mirandev.com/project.html?p=crystal-art</loc></url>
-  <url><loc>https://mirandev.com/project.html?p=pasiceva-11</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://mirandev.com/</loc><xhtml:link rel="alternate" hreflang="sr" href="https://mirandev.com/sr"/><xhtml:link rel="alternate" hreflang="en" href="https://mirandev.com/"/></url>
+  <url><loc>https://mirandev.com/sr</loc><xhtml:link rel="alternate" hreflang="sr" href="https://mirandev.com/sr"/><xhtml:link rel="alternate" hreflang="en" href="https://mirandev.com/"/></url>
+  <url><loc>https://mirandev.com/pokret-cetkice</loc></url>
+  <url><loc>https://mirandev.com/crystal-art</loc></url>
+  <url><loc>https://mirandev.com/pasiceva-11</loc></url>
 </urlset>

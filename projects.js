@@ -29,8 +29,8 @@ export const PROJECTS = [
       sr: "Klijent je hteo da sve radionice budu na jednom mestu i da se ljudi prijavljuju preko sajta. Napravio sam 8 stranica i tri CMS kolekcije, a svaku formu i galeriju u kojoj se slike otvaraju i preuzimaju napisao sam u custom kodu. Ko popuni formu, odmah dobije HTML mejl sa onim što je upisao, preko Make-a."
     },
     brief: {
-      en: "The client wanted every workshop in one place, with people signing up right on the site.",
-      sr: "Klijent je hteo da sve radionice budu na jednom mestu i da se ljudi prijavljuju preko sajta."
+      en: "The client had no website and wanted every workshop in one place, with people signing up right on the site. The design was ready; my job was to build it and make everything work.",
+      sr: "Klijent nije imao sajt i hteo je da sve radionice budu na jednom mestu, sa prijavom preko sajta. Dizajn je bio gotov, a moj posao je bio da ga napravim i da sve radi."
     },
     built: [
       { en: "8 pages, built solo in Webflow", sr: "8 stranica, sve sam radio sam u Webflow-u" },
@@ -60,19 +60,20 @@ export const PROJECTS = [
       sr: "Klijentu je najvažnije bilo da proizvodi lepo izgledaju. Katalog radi na Webflow CMS-u, slike reaguju na prelazak mišem, a klik otvara prozor sa detaljima proizvoda. Sve je prilagođeno telefonu, uz custom kod gde je trebalo."
     },
     brief: {
-      en: "What mattered most to the client was showing the products well.",
-      sr: "Klijentu je najvažnije bilo da proizvodi lepo izgledaju."
+      en: "The client had no website, and what mattered most was showing the products well. The design was ready; I built the site, then did detailed SEO work so people could find it on Google.",
+      sr: "Klijent nije imao sajt, a najvažnije mu je bilo da proizvodi lepo izgledaju. Dizajn je bio gotov. Ja sam napravio sajt, a zatim uradio detaljnu SEO optimizaciju da bi ga ljudi našli na Google-u."
     },
     built: [
       { en: "Product catalog on Webflow CMS", sr: "Katalog proizvoda na Webflow CMS-u" },
       { en: "Hover effects on product images", sr: "Hover efekti na slikama proizvoda" },
       { en: "Popups with product details", sr: "Popup prozori sa detaljima proizvoda" },
       { en: "Custom code where Webflow needed it", sr: "Custom kod gde je trebalo" },
-      { en: "Everything adapted for phones", sr: "Sve prilagođeno telefonu" }
+      { en: "Everything adapted for phones", sr: "Sve prilagođeno telefonu" },
+      { en: "Detailed SEO optimization: titles, descriptions, headings, image alt text, sitemap", sr: "Detaljna SEO optimizacija: naslovi, opisi, struktura naslova, alt tekst slika, sitemap" }
     ],
-    tags: [{ en: "Webflow", sr: "Webflow" }, { en: "CMS", sr: "CMS" }, { en: "Custom code", sr: "Custom kod" }, { en: "Interactions", sr: "Interakcije" }],
+    tags: [{ en: "Webflow", sr: "Webflow" }, { en: "CMS", sr: "CMS" }, { en: "SEO", sr: "SEO" }, { en: "Custom code", sr: "Custom kod" }],
     facts: [
-      { value: "CMS", en: "product catalog", sr: "katalog proizvoda" },
+      { value: "2×", en: "clicks from Google within 10 days of the SEO work (about 50 → 100)", sr: "klikova sa Google-a za 10 dana posle SEO optimizacije (oko 50 → 100)" },
       { value: "Popup", en: "product details without leaving the page", sr: "detalji proizvoda bez napuštanja stranice" }
     ],
     gallery: [
@@ -90,8 +91,8 @@ export const PROJECTS = [
       sr: "Mali landing page od nekoliko sekcija. Ko ga otvori, na jednom mestu vidi sve što treba da zna, bez lutanja po stranicama."
     },
     brief: {
-      en: "A simple site that says everything important on one page.",
-      sr: "Jednostavan sajt koji kaže sve bitno na jednoj stranici."
+      en: "The business center had no website and needed a simple one that says everything important on one page. The design was ready; I built it to work well on every device.",
+      sr: "Biznis centar nije imao sajt, a trebao im je jednostavan sajt koji kaže sve bitno na jednoj stranici. Dizajn je bio gotov, a ja sam ga napravio da radi lepo na svim uređajima."
     },
     built: [
       { en: "A landing page, a few sections long", sr: "Landing page od nekoliko sekcija" },
