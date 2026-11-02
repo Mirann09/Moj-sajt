@@ -2,7 +2,7 @@
 <html lang="en" data-lang="en">
 <head>
   <meta charset="utf-8">
-  <script>(function(){try{if(!/(^|\.)mirandev\.com$/.test(location.hostname))return;var p=location.pathname,n=p.replace(/\/index\.html$/,"/").replace(/\.html$/,"");if(n!==p)history.replaceState(null,"",n+location.search+location.hash)}catch(e){}})();</script>
+  <script>(function(){try{if(!/(^|\.)mirandev\.com$/.test(location.hostname))return;var f=function(){var p=location.pathname,n=p.replace(/\/index\.html$/,"/").replace(/\.html$/,"");if(n!==p)history.replaceState(history.state,"",n+location.search+location.hash)};f();addEventListener("hashchange",f);addEventListener("popstate",f);addEventListener("click",function(){setTimeout(f,0);setTimeout(f,400)},true)}catch(e){}})();</script>
   <link rel="canonical" href="https://mirandev.com/pasiceva-11">
   <meta property="og:url" content="https://mirandev.com/pasiceva-11">
   
@@ -608,7 +608,7 @@ class Component extends DCLogic {
 (function(){var h=document.documentElement,ov=document.getElementById("mdv-ov");if(!ov)return;
 function hide(d){setTimeout(function(){ov.classList.add("out");setTimeout(function(){h.classList.remove("mdv-intro","mdv-arrive","mdv-leave");ov.classList.remove("out")},450)},d)}
 if(h.classList.contains("mdv-intro"))hide(1000);else if(h.classList.contains("mdv-arrive"))hide(280);
-document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a||a.target==="_blank"||a.hasAttribute("download")||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0)return;var u=new URL(a.href,location.href);if(u.origin!==location.origin||u.pathname===location.pathname)return;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;e.preventDefault();e.stopPropagation();try{sessionStorage.setItem("mdv-go","1")}catch(x){}ov.classList.remove("out");h.classList.add("mdv-leave");setTimeout(function(){location.href=u.href},620)},true);
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a[href]");if(!a||a.target==="_blank"||a.hasAttribute("download")||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button!==0)return;var u=new URL(a.href,location.href);var np=function(x){return x.replace(/\/index\.html$/,"/").replace(/\.html$/,"")};if(u.origin!==location.origin||np(u.pathname)===np(location.pathname))return;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;e.preventDefault();e.stopPropagation();try{sessionStorage.setItem("mdv-go","1")}catch(x){}ov.classList.remove("out");h.classList.add("mdv-leave");setTimeout(function(){location.href=u.href},620)},true);
 window.addEventListener("pageshow",function(ev){if(ev.persisted){h.classList.remove("mdv-leave","mdv-intro","mdv-arrive");ov.classList.remove("out")}});
 })();
 </script>
