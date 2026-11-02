@@ -29,8 +29,8 @@ export const PROJECTS = [
       sr: "Klijent je hteo da sve radionice budu na jednom mestu i da se ljudi prijavljuju preko sajta. Napravio sam 8 stranica i tri CMS kolekcije, a svaku formu i galeriju u kojoj se slike otvaraju i preuzimaju napisao sam u custom kodu. Ko popuni formu, odmah dobije HTML mejl sa onim što je upisao, preko Make-a."
     },
     brief: {
-      en: "The client had no website and wanted every workshop in one place, with people signing up right on the site. The design was ready; my job was to build it and make everything work.",
-      sr: "Klijent nije imao sajt i hteo je da sve radionice budu na jednom mestu, sa prijavom preko sajta. Dizajn je bio gotov, a moj posao je bio da ga napravim i da sve radi."
+      en: "The client had no website and wanted every workshop in one place, with people signing up right on the site. I built it from the client's design, pixel for pixel, and made everything work.",
+      sr: "Klijent nije imao sajt i hteo je da sve radionice budu na jednom mestu, sa prijavom preko sajta. Sajt sam napravio po dizajnu klijenta, piksel po piksel, i sredio da sve radi."
     },
     built: [
       { en: "8 pages, built solo in Webflow", sr: "8 stranica, sve sam radio sam u Webflow-u" },
@@ -42,7 +42,7 @@ export const PROJECTS = [
     ],
     tags: [{ en: "Webflow", sr: "Webflow" }, { en: "CMS", sr: "CMS" }, { en: "Custom code", sr: "Custom kod" }, { en: "Make", sr: "Make" }],
     facts: [
-      { value: "3", en: "CMS collections, two of them linked", sr: "CMS kolekcije, dve međusobno povezane" },
+      { value: "Online", en: "workshop sign-ups, instead of email", sr: "prijave za radionice, umesto preko mejla" },
       { value: "8", en: "pages, built solo", sr: "stranica, sve sam radio sam" }
     ],
     gallery: [
@@ -60,8 +60,8 @@ export const PROJECTS = [
       sr: "Klijentu je najvažnije bilo da proizvodi lepo izgledaju. Katalog radi na Webflow CMS-u, slike reaguju na prelazak mišem, a klik otvara prozor sa detaljima proizvoda. Sve je prilagođeno telefonu, uz custom kod gde je trebalo."
     },
     brief: {
-      en: "The client had no website, and what mattered most was showing the products well. The design was ready; I built the site, then did detailed SEO work so people could find it on Google.",
-      sr: "Klijent nije imao sajt, a najvažnije mu je bilo da proizvodi lepo izgledaju. Dizajn je bio gotov. Ja sam napravio sajt, a zatim uradio detaljnu SEO optimizaciju da bi ga ljudi našli na Google-u."
+      en: "The client had no website, and what mattered most was showing the products well. I built it from the client's design, pixel for pixel, then did detailed SEO work so people could find it on Google.",
+      sr: "Klijent nije imao sajt, a najvažnije mu je bilo da proizvodi lepo izgledaju. Sajt sam napravio po dizajnu klijenta, piksel po piksel, a zatim uradio detaljnu SEO optimizaciju da bi ga ljudi našli na Google-u."
     },
     built: [
       { en: "Product catalog on Webflow CMS", sr: "Katalog proizvoda na Webflow CMS-u" },
@@ -91,8 +91,8 @@ export const PROJECTS = [
       sr: "Mali landing page od nekoliko sekcija. Ko ga otvori, na jednom mestu vidi sve što treba da zna, bez lutanja po stranicama."
     },
     brief: {
-      en: "The business center had no website and needed a simple one that says everything important on one page. The design was ready; I built it to work well on every device.",
-      sr: "Biznis centar nije imao sajt, a trebao im je jednostavan sajt koji kaže sve bitno na jednoj stranici. Dizajn je bio gotov, a ja sam ga napravio da radi lepo na svim uređajima."
+      en: "The business center had no website and needed a simple one that says everything important on one page. I built it from the client's design, pixel for pixel, and made it work well on every device.",
+      sr: "Biznis centar nije imao sajt, a trebao im je jednostavan sajt koji kaže sve bitno na jednoj stranici. Sajt sam napravio po dizajnu klijenta, piksel po piksel, i prilagodio ga svim uređajima."
     },
     built: [
       { en: "A landing page, a few sections long", sr: "Landing page od nekoliko sekcija" },
@@ -100,7 +100,7 @@ export const PROJECTS = [
     ],
     tags: [{ en: "Landing page", sr: "Landing page" }],
     facts: [
-      { value: "1", en: "page", sr: "stranica" },
+      { value: "Responsive", en: "works on phone, tablet and desktop", sr: "radi na telefonu, tabletu i desktopu" },
       { value: "Landing", en: "a few sections, nothing extra", sr: "nekoliko sekcija, ništa višak" }
     ],
     gallery: [
